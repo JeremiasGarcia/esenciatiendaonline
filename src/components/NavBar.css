@@ -3,14 +3,11 @@ div{
     flex-direction: row;
     justify-content: center;
     background-color: #AED6F1;
+    align-items: center;
 }
 
 h1{
     font-size: 25px;
-}
-
-nav{
-    margin-top: 26px;
 }
 
 a{

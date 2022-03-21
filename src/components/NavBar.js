@@ -1,4 +1,5 @@
 import './NavBar.css'
+import CartWidget from "./CartWidget";
 const NavBar = () => {
     return(
         <div>
@@ -14,6 +15,7 @@ const NavBar = () => {
                 <a href="#">Portasahumerios y sahumadores</a>
             </nav>
             <button>Inicio</button>
+            <CartWidget />
         </div>
     );
 };
