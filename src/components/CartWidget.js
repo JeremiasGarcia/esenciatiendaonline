@@ -1,3 +1,4 @@
+import "./CartWidget.css"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { pink } from '@mui/material/colors';
 const CartWidget = () => {
