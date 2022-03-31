@@ -21,7 +21,7 @@ const ItemListContainer = ({name, lastname}) => {
     // }
 
     return(
-        <div className="itemListContainer-container">
+        <div className="container-itemListContainer">
             <h3>Bienvenido {name} {lastname}</h3>
             <ItemList items={products}/>
             {/* <ItemCount stock={5} initial={0} onAdd={onAdd}/> */}

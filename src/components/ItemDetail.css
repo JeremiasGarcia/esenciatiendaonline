@@ -1,0 +1,40 @@
+.container-datail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+    background-color: aliceblue;
+}
+
+.product-datail{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-datail img{
+    width: 330px;
+    height: 280px;
+}
+
+.container-datail h4{
+    font-weight: 600;
+}
+
+.container-datail p{
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.container-datail a{
+    font-weight: 500;
+    text-decoration: none;
+    color: #3498;
+}

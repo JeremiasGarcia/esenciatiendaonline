@@ -2,7 +2,7 @@ import './NavBar.css'
 import CartWidget from "./CartWidget";
 const NavBar = () => {
     return(
-        <div>
+        <div className="container-navbar">
             <h1>Esencia Tienda Online</h1>
             <nav>
                 <a href="#">Productos de limpieza</a>
