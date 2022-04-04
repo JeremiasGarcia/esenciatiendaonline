@@ -5,7 +5,7 @@ import ItemDetail from "./ItemDetail";
 const ItemDetailContainer = () => {
 
     const url = 'https://mocki.io/v1/f7ae3aaf-f585-4cab-9355-541311beaf7b';
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState({});
 
     useEffect(() =>{
         fetch(url)
@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
     
     return(
         <div className="container-itemDetailContainer">
-            {product.map(item => <ItemDetail key={item.id} id={item.id} title={item.title} price={item.price} pictureUrl={item.pictureUrl}/>)}
+            <ItemDetail id={product[0].id} title={product[0].title} price={product[0].price} pictureUrl={product[0].pictureUrl}/>
         </div>
     );
 }
