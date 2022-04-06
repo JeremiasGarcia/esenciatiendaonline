@@ -4,7 +4,7 @@ import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
 
-    const url = 'https://mocki.io/v1/f7ae3aaf-f585-4cab-9355-541311beaf7b';
+    const url = 'https://fakestoreapi.com/products/14';
     const [product, setProduct] = useState({});
 
     useEffect(() =>{
@@ -15,11 +15,11 @@ const ItemDetailContainer = () => {
         },2000)));
     }, []);
 
-    if (!product.length) return <h2>Cargando...</h2>;
+    if (Object.keys(product).length === 0) return <h2>Cargando...</h2>;
     
     return(
         <div className="container-itemDetailContainer">
-            <ItemDetail id={product[0].id} title={product[0].title} price={product[0].price} pictureUrl={product[0].pictureUrl}/>
+            <ItemDetail id={product.id} title={product.title} price={product.price} image={product.image}/>
         </div>
     );
 }

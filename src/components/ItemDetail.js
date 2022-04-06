@@ -1,7 +1,7 @@
 import "./ItemDetail.css";
 import ItemCount from "./ItemCount";
 
-const ItemDetail = ({id, title, price, pictureUrl}) => {
+const ItemDetail = ({id, title, price, image}) => {
 
     const onAdd = () => {
         console.log("El producto fue agregado");
@@ -10,7 +10,7 @@ const ItemDetail = ({id, title, price, pictureUrl}) => {
     return(
         <div className="container-datail">
             <div className="images-datail"> 
-                <img src={pictureUrl} alt=""></img>
+                <img src={image} alt=""></img>
             </div>
             <div className="product-datail">
                 <h3>{title}</h3>

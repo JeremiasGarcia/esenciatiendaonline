@@ -5,7 +5,7 @@ import ItemList from "./ItemList";
 
 const ItemListContainer = ({name, lastname}) => {
 
-    const url = 'https://mocki.io/v1/dc29397a-8185-4757-94f9-1ea7a3b79701';
+    const url = 'https://fakestoreapi.com/products';
     const [products, setProducts] = useState([]);
 
     useEffect(() =>{
@@ -15,6 +15,8 @@ const ItemListContainer = ({name, lastname}) => {
             setProducts(json);
         },2000)));
     }, []);
+
+    if (!products.length) return <h2>Cargando...</h2>;
 
     // const onAdd = () => {
     //     console.log("El producto fue agregado");
