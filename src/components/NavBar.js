@@ -1,21 +1,34 @@
 import './NavBar.css'
+import { useState, useEffect } from "react";
 import CartWidget from "./CartWidget";
+import { NavLink, Link } from 'react-router-dom';
 const NavBar = () => {
+
+    const url = 'https://fakestoreapi.com/products/categories';
+    const [categories, setCategories] = useState([]);
+    const ruta = '/category/';
+
+    useEffect(() => {
+        fetch(url)
+            .then(res=>res.json())
+            .then(json=>setCategories(json))
+    });
+
     return(
         <div className="container-navbar">
-            <h1>Esencia Tienda Online</h1>
+            <Link className="temporal" to="/">
+                <h1>Esencia Tienda Online</h1>
+            </Link>
+            
             <nav>
-                <a href="#">Productos de limpieza</a>
-                <a href="#">Aromas</a>
-                <a href="#">Hornitos</a>
-                <a href="#">Lámparas de sal</a>
-                <a href="#">Saphirus</a>
-                <a href="#">Sagrada madre</a>
-                <a href="#">Sahumerios premium</a>
-                <a href="#">Portasahumerios y sahumadores</a>
+                {categories.map((category, index) => <Link className="temporal" to={ruta+category} key={index}>{category}</Link>)}
             </nav>
-            <button>Inicio</button>
-            <CartWidget />
+            {/* <button>Inicio</button> */}
+
+            <NavLink to="/cart">
+                <CartWidget />
+            </NavLink>
+            
         </div>
     );
 };

@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 import "./ItemListContainer.css"
 import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
 
-    const url = 'https://fakestoreapi.com/products/14';
+    let url = '';
     const [product, setProduct] = useState({});
+    const {productName} = useParams();
+
+    if(productName){
+        url = `https://fakestoreapi.com/products/${productName}`
+    }else{
+        url = 'https://fakestoreapi.com/products'
+    }
+    
 
     useEffect(() =>{
         fetch(url)
@@ -13,7 +22,7 @@ const ItemDetailContainer = () => {
         .then(json=>(setTimeout(()=>{
             setProduct(json);
         },2000)));
-    }, []);
+    }, [productName]);
 
     if (Object.keys(product).length === 0) return <h2>Cargando...</h2>;
     

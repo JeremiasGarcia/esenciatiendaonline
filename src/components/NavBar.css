@@ -10,7 +10,8 @@ h1{
     font-size: 25px;
 }
 
-a{
+.temporal{
+    text-decoration: none;
     margin: 10px;
 }
 
