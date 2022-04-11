@@ -1,20 +1,21 @@
 import "./ItemCount.css"
 import React, { useState } from "react";
+import { NavLink } from 'react-router-dom';
 
-const ItemCount = ({stock, initial, onAdd}) => {
+const ItemCount = ({stock, initial, onAdd, state}) => {
     
     const [count, setCount] = useState(initial);
     
     const add = () => {
-       count < stock && setCount(count + 1)
+       count < stock && setCount(count + 1);
     }
 
     const remove = () => {
-        count > 0 && setCount(count - 1)
+        count > 0 && setCount(count - 1);
     }
 
-    const agregarAlCarrito = () => {
-        onAdd();
+    const handlerClick = (count) => {
+        onAdd(count);
     }
 
     return(
@@ -25,8 +26,13 @@ const ItemCount = ({stock, initial, onAdd}) => {
                 <button onClick={add}>+</button>
             </div>
             <div>
-                <button onClick={agregarAlCarrito}>Agregar al carrito</button>
+                {!state && <button onClick={()=>handlerClick(count)}>Agregar al carrito</button> }
             </div>
+            <NavLink to="/cart">
+                <div>
+                {state && <button>Finalizar la compra</button>}
+                </div>
+            </NavLink>
             
         </div>
     );

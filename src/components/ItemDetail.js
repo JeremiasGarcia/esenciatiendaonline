@@ -1,10 +1,13 @@
 import "./ItemDetail.css";
+import React, { useState } from "react";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({id, title, price, image}) => {
 
-    const onAdd = () => {
-        console.log("El producto fue agregado");
+    const [state, setState] = useState(false);
+
+    const onAdd = (count) => {
+        count > 0 && setState(true)
     }
     
     return(
@@ -15,7 +18,7 @@ const ItemDetail = ({id, title, price, image}) => {
             <div className="product-datail">
                 <h3>{title}</h3>
                 <h1>${price}</h1>
-                <ItemCount stock={5} initial={0} onAdd={onAdd}/>
+                <ItemCount stock={id} initial={0} onAdd={onAdd} state={state}/>
             </div>
         </div>
     );
