@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import "./ItemListContainer.css"
-import ItemDetail from "./ItemDetail";
+import "../css/ItemListContainer.css"
+import ItemDetail from "../components/ItemDetail";
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
@@ -23,12 +23,10 @@ const ItemDetailContainer = () => {
             setProduct(json);
         },2000)));
     }, [productName]);
-
-    if (Object.keys(product).length === 0) return <h2>Cargando...</h2>;
     
     return(
         <div className="container-itemDetailContainer">
-            <ItemDetail id={product.id} title={product.title} price={product.price} image={product.image}/>
+            {Object.keys(product).length !== 0 ? <ItemDetail id={product.id} title={product.title} price={product.price} image={product.image}/> : <h2>Cargando...</h2>}
         </div>
     );
 }

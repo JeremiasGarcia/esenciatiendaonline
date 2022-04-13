@@ -1,4 +1,4 @@
-import "./Item.css"
+import "../css/Item.css"
 import { NavLink } from 'react-router-dom';
 
 const Item = ({id, title, price, image}) => {

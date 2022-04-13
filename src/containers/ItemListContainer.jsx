@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import "./ItemListContainer.css"
-import ItemList from "./ItemList";
+import "../css/ItemListContainer.css"
+import ItemList from "../components/ItemList";
 import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({name, lastname}) => {
@@ -21,13 +21,12 @@ const ItemListContainer = ({name, lastname}) => {
             setProducts(json);
         },2000)));
     }, [categoryName]);
-
-    if (!products.length) return <h2>Cargando...</h2>;
     
     return(
         <div className="container-itemListContainer">
-            <h3>Bienvenido {name} {lastname}</h3>
-            <ItemList items={products} url={url}/>
+            {products.length 
+            ? <><h3>Bienvenido {name} {lastname}</h3> <ItemList items={products} url={url}/></> 
+            : <h2>Cargando...</h2>}
         </div>
     );
 }
