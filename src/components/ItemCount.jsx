@@ -1,5 +1,6 @@
 import "../css/ItemCount.css"
 import React, { useState } from "react";
+import { NavLink} from 'react-router-dom';
 
 const ItemCount = ({stock, initial, onAdd, state}) => {
     
@@ -25,8 +26,13 @@ const ItemCount = ({stock, initial, onAdd, state}) => {
                 <button onClick={add}>+</button>
             </div>
             <div>
-                {!state && <button onClick={()=>handlerClick(count)}>Agregar al carrito</button> }
-                {/* <button onClick={()=>handlerClick(count)}>Agregar al carrito</button> */}
+
+                {state
+                ?<NavLink to="/cart">
+                    {state && <button>Finalizar la compra</button>}
+                 </NavLink> 
+                : <button onClick={()=>handlerClick(count)}>Agregar al carrito</button>
+                }
             </div>
         </div>
     );
