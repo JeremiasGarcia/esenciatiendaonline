@@ -6,6 +6,8 @@ const { Provider } = CartContext;
 
 const CustomProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
+    //const [precioTotal, setPrecioTotal] = useState(0);
+    //const [cantidadProductos, setCantidadProductos] = useState(0);
 
     const addItem = (item, quantity) => {
         const newItem = {
@@ -18,10 +20,8 @@ const CustomProvider = ({ children }) => {
             const aux = [...cart];
             aux[index].quantity += quantity;
             setCart(aux);
-            console.log(cart);
         }else{
             setCart([...cart, newItem]);
-            // console.log(cart);
         }
     }
 
