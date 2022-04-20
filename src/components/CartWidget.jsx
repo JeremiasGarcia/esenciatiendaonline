@@ -4,11 +4,12 @@ import { pink } from '@mui/material/colors';
 import React, {useContext } from "react";
 import { CartContext } from "../context/CartContext";
 const CartWidget = () => {
-    const {cart} = useContext(CartContext);
+    const {qty} = useContext(CartContext);
     return(
         <>
             <ShoppingCartIcon sx={{ color: pink[300] }} />
-            <span className="cart-quantity">5</span>
+            {(qty !== 0) && <span className="cart-quantity">{qty}</span>}
+            
         </>
 
     );
