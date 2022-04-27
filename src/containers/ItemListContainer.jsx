@@ -6,25 +6,19 @@ import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 const ItemListContainer = ({name, lastname}) => {
-    let url = '';
     let q = '';
     const [products, setProducts] = useState([]);
     const {categoryName} = useParams();
     
-    if(categoryName){
-        url = `https://fakestoreapi.com/products/category/${categoryName}`;
-    }else{
-        url = 'https://fakestoreapi.com/products/';
-    }
-
     useEffect(() =>{
         const productsCollection = collection(db, "productos");
-        // if(categoryName){
-        //     q = query(productsCollection, where("category", "==", categoryName));
-        // }else{
-        //     q = '';
-        // }
-        const q = query(productsCollection, where("category", "==", "men's clothing"));
+        if(categoryName){
+            q = query(productsCollection, where("category", "==", categoryName));
+            // setQ(query(productsCollection, where("category", "==", categoryName)));
+        }else{
+            q = productsCollection;
+            // setQ(productsCollection);
+        }
         getDocs(q)
         .then((result) => {
             const docs = result.docs;
@@ -42,9 +36,11 @@ const ItemListContainer = ({name, lastname}) => {
     
     return(
         <div className="container-itemListContainer">
-            {products.length 
-            ? <><h3>Bienvenido {name} {lastname}</h3> <ItemList items={products} url={url}/></> 
-            : <h2>Cargando...</h2>}
+            {
+                products.length
+                    ? <><h3>Bienvenido {name} {lastname}</h3> <ItemList items={products}/></> 
+                    : <h2>Cargando...</h2>
+            }
         </div>
     );
 }

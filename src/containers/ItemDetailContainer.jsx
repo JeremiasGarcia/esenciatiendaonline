@@ -7,17 +7,9 @@ import { db } from "../firebase/firebase";
 
 const ItemDetailContainer = () => {
 
-    let url = '';
     const [product, setProduct] = useState({});
     const {productName} = useParams();
-
-    if(productName){
-        url = `https://fakestoreapi.com/products/${productName}`
-    }else{
-        url = 'https://fakestoreapi.com/products'
-    }
     
-
     useEffect(() =>{
         const productsCollection = collection(db, "productos");
         const refDoc = doc(productsCollection, productName);
@@ -35,7 +27,11 @@ const ItemDetailContainer = () => {
     
     return(
         <div className="container-itemDetailContainer">
-            {Object.keys(product).length !== 0 ? <ItemDetail id={product.id} title={product.title} price={product.price} image={product.image}/> : <h2>Cargando...</h2>}
+            {
+                Object.keys(product).length !== 0 
+                    ? <ItemDetail id={productName} title={product.title} price={product.price} image={product.image} stock={product.stock}/> 
+                    : <h2>Cargando...</h2>
+            }
         </div>
     );
 }

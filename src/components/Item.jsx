@@ -1,7 +1,7 @@
 import "../css/Item.css"
 import { NavLink } from 'react-router-dom';
 
-const Item = ({id, title, price, image}) => {
+const Item = ({id, title, price, image, stock}) => {
     const ruta = '/products/';
     return(
         <div className="card">
