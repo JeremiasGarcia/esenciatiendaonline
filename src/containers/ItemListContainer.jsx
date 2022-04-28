@@ -14,10 +14,8 @@ const ItemListContainer = ({name, lastname}) => {
         const productsCollection = collection(db, "productos");
         if(categoryName){
             q = query(productsCollection, where("category", "==", categoryName));
-            // setQ(query(productsCollection, where("category", "==", categoryName)));
         }else{
             q = productsCollection;
-            // setQ(productsCollection);
         }
         getDocs(q)
         .then((result) => {
