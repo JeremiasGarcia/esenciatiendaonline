@@ -1,22 +1,20 @@
-import { useState } from "react";
-
+import "../css/Form.css"
 export const Form = ( {handlerClickContinue} ) => {
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let name = e.target.name.value;
+        let phone = e.target.phone.value;
+        let email = e.target.email.value;
+        handlerClickContinue({name, phone, email});
+    }
 
     return(
-        <form onSubmit={ e => { e.preventDefault();
-                                setName(e.target.name.value);
-                                setPhone(e.target.phone.value);
-                                setEmail(e.target.email.value);
-                        }}
-        >
+        <form className="form" onSubmit={ handleSubmit }>
             <input type="text" name="name" autoComplete="off"/>
             <input type="number" name="phone" autoComplete="off"/>
             <input type="email" name="email" autoComplete="off"/>
-            {/* <button type="submit" onClick={() => handlerClickContinue({name, phone, email})}>Finalizar compra</button> */}
-            <button type="submit" onClick={() => handlerClickContinue({name, phone, email})}>Finalizar compra</button>
+            <button type="submit">Finalizar compra</button>
         </form>
         
     );
