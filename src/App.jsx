@@ -21,7 +21,6 @@ const App = () => {
             <Route path="/category/:categoryName" element={<ItemListContainer name={name} lastname={lastaname} />} />
             <Route path="/products/:productName" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
-            {/* <Route path="*" element={<Error />} /> */}
           </Routes>
         </div>
         </CustomProvider>

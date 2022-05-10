@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import { CartContext } from "../context/CartContext";
 import { NavLink} from 'react-router-dom';
-import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, updateDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { Form } from "./Form";
 import "../css/Cart.css";
@@ -17,6 +17,7 @@ export const Cart = () => {
 
     const handlerClickContinue = (cliente) => {
         const ventaCollection = collection(db, "ventas");
+        const productsCollection = collection(db, "productos");
         addDoc(ventaCollection, {
             cliente,
             items: cart,
@@ -26,11 +27,18 @@ export const Cart = () => {
         .then(result => {
             setIdVenta(result.id);
         })
-        // const updateCollection = doc(db, "productos", id);
-        // updateDoc(updateCollection, {stock: 10})
-        // cart.forEach(element => {
-            
-        // });
+        cart.forEach(element => {
+            const id = element.id;
+            const quantity = element.quantity;
+            const refDoc = doc(productsCollection, element.id);
+            getDoc(refDoc)
+            .then((result) => {
+                const stockOld = result.data().stock;
+                const stockNew = stockOld - quantity;
+                const updateCollection = doc(db, "productos", id);
+                updateDoc(updateCollection, {stock: stockNew})
+            });
+        });
         clear();
     }
 
@@ -38,12 +46,15 @@ export const Cart = () => {
         <div className="cart">
             {
                 (total !== 0 && idVenta === "") 
-                    && cart.map(item => <><div className="products-cart" key={item.id}>
+                    && cart.map(item => <div className="products-cart" key={item.id}>
                                             <p>{item.title}: {item.quantity}</p>
                                             <button onClick={()=>handlerClickDelete(item.id)}>X</button>
                                         </div>
-                                        <h3>Total: {total}</h3></>
                                 )
+            }
+            {
+                (total !== 0 && idVenta === "") 
+                    && <h3>Total: {total}</h3>
             }
             {
                 (total === 0 && idVenta === "") && <><h4>Tu carrito está vacío</h4><NavLink to="/"><button>Volver al inicio</button></NavLink></>

@@ -17,12 +17,6 @@ const ItemDetailContainer = () => {
         .then((result) => {
             setProduct(result.data());
         });
-
-        /*fetch(url)
-        .then(res=>res.json())
-        .then(json=>(setTimeout(()=>{
-            setProduct(json);
-        },2000)));*/
     }, [productName]);
     
     return(
